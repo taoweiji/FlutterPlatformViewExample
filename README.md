@@ -1,4 +1,4 @@
-# [Flutter Platform View：在 Flutter 中使用原生的 View](https://www.jianshu.com/p/8d74a7318c26)
+# [Flutter Platform View：在 Flutter 中使用Android、iOS的原生 View](https://www.jianshu.com/p/8d74a7318c26)
 
 我们在进行Flutter开发的时候，有时候是需要用到原生的View，比如WebView、MapView、第三方广告SDK等，Flutter提供了AndroidView、UiKitView可以实现相关功能。
 #### 创建项目
