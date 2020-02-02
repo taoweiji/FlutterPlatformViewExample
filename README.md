@@ -50,16 +50,14 @@ import Flutter
 class PlatformTextView: NSObject,FlutterPlatformView {
     let frame: CGRect;
     let viewId: Int64;
-    var text:String = "iOS Label"
+    var text:String = ""
 
     init(_ frame: CGRect,viewID: Int64,args :Any?) {
         self.frame = frame
         self.viewId = viewID
         if(args is NSDictionary){
             let dict = args as! NSDictionary
-            if(dict.allKeys(for: "text").count > 0){
-                self.text = dict.value(forKey: "text") as! String
-            }
+            self.text = dict.value(forKey: "text") as! String
         }
     }
     func view() -> UIView {
@@ -73,9 +71,15 @@ class PlatformTextView: NSObject,FlutterPlatformView {
 ```
 第三步：创建PlatformTextViewFactory.swift
 ```swift
+import Foundation
+import Flutter
+
 class PlatformTextViewFactory: NSObject,FlutterPlatformViewFactory {
     func create(withFrame frame: CGRect, viewIdentifier viewId: Int64, arguments args: Any?) -> FlutterPlatformView {
         return PlatformTextView(frame,viewID: viewId,args: args)
+    }
+    func createArgsCodec() -> FlutterMessageCodec & NSObjectProtocol {
+        return FlutterStandardMessageCodec.sharedInstance()
     }
 }
 ```
@@ -133,7 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
     } else if (defaultTargetPlatform == TargetPlatform.iOS) {
       return UiKitView(
           viewType: "platform_text_view",
-          creationParams: <String, dynamic>{"text": "iOS Text View"},
+          creationParams: <String, dynamic>{"text": "iOS Label"},
           creationParamsCodec: const StandardMessageCodec());
     } else {
       return Text("Not supported");
@@ -153,7 +157,6 @@ class _MyHomePageState extends State<MyHomePage> {
 ```
 #### 运行
 ![](https://upload-images.jianshu.io/upload_images/2431302-4e141f6e23b469c9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
 
 
 #### 参考

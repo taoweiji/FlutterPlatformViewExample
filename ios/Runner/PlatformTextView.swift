@@ -11,16 +11,14 @@ import Flutter
 class PlatformTextView: NSObject,FlutterPlatformView {
     let frame: CGRect;
     let viewId: Int64;
-    var text:String = "iOS Label"
+    var text:String = ""
 
     init(_ frame: CGRect,viewID: Int64,args :Any?) {
         self.frame = frame
         self.viewId = viewID
         if(args is NSDictionary){
             let dict = args as! NSDictionary
-            if(dict.allKeys(for: "text").count > 0){
-                self.text = dict.value(forKey: "text") as! String
-            }
+            self.text = dict.value(forKey: "text") as! String
         }
     }
     func view() -> UIView {

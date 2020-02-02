@@ -34,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
     } else if (defaultTargetPlatform == TargetPlatform.iOS) {
       return UiKitView(
           viewType: "platform_text_view",
-          creationParams: <String, dynamic>{"text": "iOS Text View"},
+          creationParams: <String, dynamic>{"text": "iOS Label"},
           creationParamsCodec: const StandardMessageCodec());
     } else {
       return Text("Not supported");
